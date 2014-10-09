@@ -16,11 +16,10 @@
   #     
   L.VectorMarkers = {}
   L.VectorMarkers.version = "1.0.0"
-  L.VectorMarkers.MAP_PIN = 'M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z'
   L.VectorMarkers.Icon = L.Icon.extend(
     options:
-      iconSize: [ 30, 50 ]
-      iconAnchor: [ 15, 50 ]
+      iconSize: [ 32, 52 ]
+      iconAnchor: [ 16, 52 ]
       popupAnchor: [ 2, -40 ]
       shadowAnchor: [ 7, 45 ]
       shadowSize: [ 54, 51 ]
@@ -30,7 +29,8 @@
       extraClasses: ""
       icon: "home"
       markerColor: "blue"
-      iconColor: "white"
+      iconColor: "white",
+      pinPath: 'M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z',
 
     initialize: (options) ->
       options = L.Util.setOptions(this, options)
@@ -41,10 +41,8 @@
 
       icon = @_createInner()  if options.icon
 
-      pin_path = L.VectorMarkers.MAP_PIN
-
-      div.innerHTML = '<svg width="32px" height="52px" viewBox="0 0 32 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' + 
-                        '<path d="' + pin_path + '" fill="' + options.markerColor + '"></path>' + 
+      div.innerHTML = '<svg width="' + options.iconSize[0] + 'px" height="' + options.iconSize[1] + 'px" viewBox="0 0 ' + options.iconSize[0] + ' ' + options.iconSize[1] + '" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' + 
+                        '<path d="' + options.pinPath + '" fill="' + options.markerColor + '"></path>' + 
                         icon + 
                       '</svg>'
       @_setIconStyles div, "icon"
